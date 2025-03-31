@@ -94,6 +94,6 @@ public class LoginTest : PageTest
         await _page.GetByRole(AriaRole.Link, new() { Name = "Profile" }).ClickAsync();
 
         // Expect the profile page to have the text 'Order Product: Laptop'.
-        await Expect(_page.Locator("[id=\"\\31 5\"]")).ToContainTextAsync("Order Product: Laptop");
+        await Expect(_page.GetByRole(AriaRole.Main)).ToContainTextAsync("Order Product: Laptop");
     }
 }
