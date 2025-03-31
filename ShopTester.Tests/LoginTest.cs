@@ -1,40 +1,37 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace ShopTester.Tests;
+
+using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Microsoft.Playwright.MSTest;
 
-namespace PlaywrightTests;
 
 [TestClass]
-public class ExampleTest : PageTest
+public class LoginTest : PageTest
 {
     private IPlaywright _playwright;
     private IBrowser _browser;
-    private IBrowserContext _context;
+    private IBrowserContext _browserContext;
     private IPage _page;
 
     [TestInitialize]
     public async Task Setup()
     {
         _playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-        _browser = await _playwright.Chromium.LaunchAsync(new() { Headless = false, SlowMo = 1000 });
-        _context = await _browser.NewContextAsync();
-        _page = await _context.NewPageAsync();
+        _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        {
+            Headless = false,
+            SlowMo = 100 // Add a delay between actions
+        });
+        _browserContext = await _browser.NewContextAsync();
+        _page = await _browserContext.NewPageAsync();
     }
 
     [TestCleanup]
     public async Task Cleanup()
     {
+        await _browserContext.CloseAsync();
         await _browser.CloseAsync();
         _playwright.Dispose();
-    }
-
-    [TestMethod]
-    public async Task HasTitle()
-    {
-        await _page.GotoAsync("https://playwright.dev");
-
-        // Expect a title "to contain" a substring.
-        await Expect(_page).ToHaveTitleAsync(new Regex("Playwright"));
     }
 
     [TestMethod]
