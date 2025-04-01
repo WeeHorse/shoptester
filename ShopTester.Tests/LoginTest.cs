@@ -105,7 +105,7 @@ public class LoginTest : PageTest
 
         // Find the link button to shop
 
-        // await _page.GetByRole(AriaRole.Link, new() { name = "#nav-shop"});
+        // await _page.GetByRole(AriaRole.Link, new() { name = "Shop"}).ClickAsync();
         await _page.Locator("#nav-shop").ClickAsync();
 
         await Expect(_page.GetByRole(AriaRole.Button, new() { Name = "Electronics" })).ToBeVisibleAsync();
