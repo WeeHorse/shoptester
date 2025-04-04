@@ -28,4 +28,4 @@ jobs:
       - name: Start Server
         run: cd server && nohup dotnet run &
       - name: Run API-Tests
-        run: newman run ../api-test/Test.postman_collection.json
+        run: newman run ./api-test/Test.postman_collection.json
