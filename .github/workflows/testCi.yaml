@@ -41,7 +41,7 @@ jobs:
       - name: Install dotnet project dependencies
         run: dotnet restore
       - name: Build/Restore Playwright Project
-        run: cd ShopTester.Tests && dotnet restore
+        run: cd ShopTester.Tests && dotnet build
       - name: Ensure browsers are installed
         run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
       - name: Start server
