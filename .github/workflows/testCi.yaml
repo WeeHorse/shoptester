@@ -31,7 +31,7 @@ jobs:
         run: newman run ./api-test/Test.postman_collection.json
 
   gui_tests:
-    runs- on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Setup dotnet
