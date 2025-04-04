@@ -30,6 +30,8 @@ app.UseSession();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
+app.MapFallbackToFile("index.html");
+
 // Seed the database with sample data
 var connection = app.Services.GetRequiredService<SqliteConnection>();
 await DatabaseSeeder.PopulateSampleData(connection);
