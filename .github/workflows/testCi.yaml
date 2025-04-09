@@ -64,6 +64,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: | 
+            source /root/.nvm/nvm.sh
+            nvm use v20.12.2
             cd /srv/www/shoptester
             git pull
             cd client
