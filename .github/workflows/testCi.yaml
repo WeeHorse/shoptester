@@ -3,6 +3,8 @@ name: CI/CD Test
 on:
   push:
     branches: ["playright-tests"]
+  pull_request:
+    branches: ["playright-tests"]
 
 
 jobs:
