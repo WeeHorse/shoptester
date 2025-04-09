@@ -4,7 +4,7 @@ export default function Home() {
     const navigate = useNavigate();
     return (
         <div style={{ textAlign: 'center', padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f0f8ff' }}>
-            <h1 style={{ color: '#ff4500', fontSize: '3em' }}>Welcome to Halmstad oh great lords!</h1>
+            <h1 style={{ color: '#ff4500', fontSize: '3em' }}>Welcome to Halmstad oh great lords!!</h1>
             <p style={{ color: '#2e8b57', fontSize: '1.2em' }}>Your one-stop shop for all your testing needs.</p>
             <img src="https://dl.the-web.co.jp/wp-content/uploads/2021/12/THE-SHOP-PICT1%EF%BC%88TOKYO-_-main%EF%BC%89.jpg" alt="TestShopper Logo" style={{ borderRadius: '20%', margin: '20px 0', width: '70%' }} />
             <p style={{ color: '#2e8b57', fontSize: '1.2em' }}>Browse our categories and find the best products for your testing requirements.</p>

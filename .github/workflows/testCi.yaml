@@ -54,16 +54,18 @@ jobs:
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
-    needs: [api-tests, gui-tests] # Run only if previous tests are OK
+    needs: [api_tests, gui_tests] # Run only if previous tests are OK
     steps:
       - name: Deploy App
-        uses: appleboy/ssh-action@1.2.0
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: | 
+            source /root/.nvm/nvm.sh
+            nvm use v20.12.2
             cd /srv/www/shoptester
             git pull
             cd client
