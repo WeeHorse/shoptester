@@ -57,7 +57,7 @@ jobs:
     needs: [api_tests, gui_tests] # Run only if previous tests are OK
     steps:
       - name: Deploy App
-        uses: appleboy/ssh-action@1.2.0
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
