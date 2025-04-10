@@ -1,3 +1,6 @@
+## lets skip package lock here
+package-lock.json
+
 ## Build and Publish folders
 bin/
 obj/
