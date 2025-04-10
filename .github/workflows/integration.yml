@@ -1,0 +1,27 @@
+name: CI/CD Test
+
+on:
+  push:
+    branches: ["integration"]
+
+
+jobs:
+  # Name of the job/test
+  dotnet_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dotnet application
+        run: cd server && dotnet restore
+      - name: Build testing
+        run: cd testing && dotnet build
+      - name: Ensure browsers are installed
+        run: cd testing && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+      - name: Start server
+        run: cd server && nohup dotnet run &
+      - name: Run GUI-tests
+        run: cd testing && dotnet test
