@@ -29,7 +29,6 @@ app.UseSession();
 // Use static files for the wwwroot folder
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
 app.MapFallbackToFile("index.html");
 
 // Seed the database with sample data
