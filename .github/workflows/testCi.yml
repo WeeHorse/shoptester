@@ -120,8 +120,26 @@ jobs:
         working-directory: ShopTester.Tests
 
       - name: Install Playwright browsers
-        run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        shell: pwsh
         working-directory: ShopTester.Tests
+        run: |
+          # Ensure build output exists
+          dotnet build -c Release
+
+          # Find Playwright install script (path varies by TFMs/config)
+          $script = Get-ChildItem -Path . -Recurse -Filter "playwright.ps1" |
+            Where-Object { $_.FullName -match "bin" } |
+            Select-Object -First 1
+
+          if (-not $script) {
+            Write-Error "Could not find playwright.ps1. Ensure Microsoft.Playwright is referenced in ShopTester.Tests and build output was produced."
+            Write-Host "Listing potential locations under bin/:"
+            Get-ChildItem -Path .\bin -Recurse -ErrorAction SilentlyContinue | Select-Object FullName
+            exit 1
+          }
+
+          Write-Host "Using Playwright script at: $($script.FullName)"
+          & $script.FullName install --with-deps
 
       - name: Start server
         shell: bash
